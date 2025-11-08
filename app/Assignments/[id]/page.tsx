@@ -32,6 +32,17 @@ export default function Page() {
               <div className="flex items-center justify-between w-full mb-4">
                 <span className="text-6xl">Task : {assignment.title}</span>
                 <button
+                  className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
+                  onClick={() => {
+                    
+                    router.push(`${id}/update`);
+
+
+                  }}
+                >
+                  Update
+                </button>
+                <button
                   className="bg-red-500 hover:bg-red-400 text-white font-bold py-2 px-4 rounded"
                   onClick={async () => {
                     await fetch(`http://localhost:3001/api/data/${assignment._id}`, {

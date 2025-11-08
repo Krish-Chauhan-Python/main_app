@@ -1,16 +1,23 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useImperativeHandle, forwardRef } from 'react';
 import Link from 'next/link';
 
-export default function Sidebar() {
+const Sidebar = forwardRef((props, ref) => {
+  const [change, setChange] = useState(true);
   const [data, setData] = useState([]);
+
+  useImperativeHandle(ref, () => ({
+    toggleChange() {
+      setChange((prev) => !prev);
+    }
+}));
 
   useEffect(() => {
     fetch('http://localhost:3001/api/data/')
       .then((res) => res.json())
       .then((json) => setData(json))
       .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+  }, [change]);
 
   return (
     <aside className="h-screen w-64 bg-gray-800 text-white fixed top-0 left-0 shadow-lg">
@@ -48,7 +55,9 @@ export default function Sidebar() {
       </nav>
     </aside>
   );
-}
+});
 
+
+export default Sidebar;
 
 

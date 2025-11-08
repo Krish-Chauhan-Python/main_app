@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-
+import Sidebar from '@/app/components/sidebar.jsx';
 
 export default function Page() {
 
@@ -14,6 +14,7 @@ export default function Page() {
 
   return (
     <div className="flex">
+      <Sidebar />
       <main className=" flex-1 p-6 min-h-screen flex flex-col">
         <div className='bg-gray-800 rounded p-6 flex-1 flex flex-col'>
 
